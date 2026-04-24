@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#1a0505" />
+      <stop offset="60%" stop-color="#0a0202" />
+      <stop offset="100%" stop-color="#030101" />
+    </radialGradient>
+
+    <!-- Vignette Overlay -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+      <stop offset="50%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.7" />
+    </radialGradient>
+
+    <!-- Flame Gradients -->
+    <linearGradient id="flameCenter" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#CC1A1A" />
+      <stop offset="45%" stop-color="#FF2D2D" />
+      <stop offset="100%" stop-color="#FF5500" />
+    </linearGradient>
+
+    <linearGradient id="flameSide" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#991010" />
+      <stop offset="50%" stop-color="#CC1A1A" />
+      <stop offset="100%" stop-color="#FF5500" />
+    </linearGradient>
+
+    <linearGradient id="flameInner" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#FF2D2D" />
+      <stop offset="60%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#FFD000" />
+    </linearGradient>
+
+    <!-- Ember Base Glow Gradient -->
+    <radialGradient id="emberGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF6B00" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#FF2D2D" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#CC1A1A" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Glow Filter for Ambient Light -->
+    <filter id="ambientGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur1" />
+      <feGaussianBlur stdDeviation="25" result="blur2" />
+      <feGaussianBlur stdDeviation="40" result="blur3" />
+      <feMerge>
+        <feMergeNode in="blur3" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Soft Blur for Base Ember -->
+    <filter id="softBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" />
+    </filter>
+  </defs>
+
+  <style><![CDATA[
+/* Flame Animations */
+    .flame-center {
+      transform-origin: 200px 340px;
+      animation: pulseCenter 4s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    }
+    
+    .flame-left {
+      transform-origin: 170px 325px;
+      animation: swayLeft 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    }
+    
+    .flame-right {
+      transform-origin: 230px 325px;
+      animation: swayRight 4.8s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    }
+    
+    .flame-inner {
+      transform-origin: 200px 320px;
+      animation: breathInner 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+      mix-blend-mode: screen;
+    }
+
+    .aura {
+      transform-origin: 200px 340px;
+      animation: pulseAura 4s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+      mix-blend-mode: screen;
+    }
+
+    /* Keyframes */
+    @keyframes pulseCenter {
+      0% { transform: scale(1, 1) skewX(0deg); }
+      50% { transform: scale(1.02, 1.05) skewX(-1.5deg); }
+      100% { transform: scale(0.98, 1.08) skewX(1.5deg); }
+    }
+
+    @keyframes swayLeft {
+      0% { transform: rotate(0deg) scale(1, 1); }
+      50% { transform: rotate(-6deg) scale(1.03, 1.05); }
+      100% { transform: rotate(-2deg) scale(0.97, 1.02); }
+    }
+
+    @keyframes swayRight {
+      0% { transform: rotate(0deg) scale(1, 1); }
+      50% { transform: rotate(7deg) scale(1.04, 1.06); }
+      100% { transform: rotate(3deg) scale(0.98, 1.01); }
+    }
+
+    @keyframes breathInner {
+      0% { transform: scale(1, 1) translateY(0); opacity: 0.85; }
+      100% { transform: scale(1.12, 1.18) translateY(-4px); opacity: 1; }
+    }
+
+    @keyframes pulseAura {
+      0% { transform: scale(1, 1); opacity: 0.4; }
+      100% { transform: scale(1.05, 1.1); opacity: 0.6; }
+    }
+
+    /* Ember Particles Animation */
+    .ember {
+      mix-blend-mode: screen;
+      animation-name: floatUp;
+      animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation-iteration-count: infinite;
+    }
+    
+    .e1 { animation-duration: 3s; animation-delay: 0s; }
+    .e2 { animation-duration: 4s; animation-delay: 1.2s; }
+    .e3 { animation-duration: 3.5s; animation-delay: 2.5s; }
+    .e4 { animation-duration: 4.5s; animation-delay: 0.8s; }
+    .e5 { animation-duration: 3.8s; animation-delay: 1.9s; }
+    .e6 { animation-duration: 4.2s; animation-delay: 3.1s; }
+
+    @keyframes floatUp {
+      0% { transform: translate(0, 0) scale(1); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 0.8; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0.2); opacity: 0; }
+    }
+]]></style>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bgGradient)" />
+
+  <!-- Base Ambient Glow -->
+  <ellipse cx="200" cy="320" rx="80" ry="40" fill="url(#emberGlow)" filter="url(#ambientGlow)" opacity="0.6" />
+
+  <!-- Main Composition Group -->
+  <g id="midnight-ember-logo">
+    
+    <!-- Outer Aura / Glow Behind Flames -->
+    <path class="aura" filter="url(#ambientGlow)" fill="url(#flameCenter)" 
+          d="M200,340 C130,340 140,230 185,160 C200,135 200,100 200,70 C200,110 225,140 240,180 C265,240 270,340 200,340 Z" />
+
+    <!-- Left Flame -->
+    <path class="flame-left" fill="url(#flameSide)" 
+          d="M170,325 C100,315 105,220 135,160 C145,140 155,120 155,120 C145,150 155,180 170,205 C190,240 195,290 170,325 Z" />
+
+    <!-- Right Flame -->
+    <path class="flame-right" fill="url(#flameSide)" 
+          d="M230,325 C300,315 295,220 265,160 C255,140 245,120 245,120 C255,150 245,180 230,205 C210,240 205,290 230,325 Z" />
+
+    <!-- Center Flame (Tallest) -->
+    <path class="flame-center" fill="url(#flameCenter)" 
+          d="M200,340 C130,340 140,230 185,160 C200,135 200,100 200,70 C200,110 225,140 240,180 C265,240 270,340 200,340 Z" />
+
+    <!-- Inner Core Flame (Breathing) -->
+    <path class="flame-inner" fill="url(#flameInner)" 
+          d="M200,320 C165,320 170,260 190,210 C195,195 200,175 200,155 C200,175 210,195 215,210 C230,260 235,320 200,320 Z" />
+
+    <!-- Intense Base Ember Core -->
+    <ellipse cx="200" cy="330" rx="25" ry="8" fill="#FF6B00" filter="url(#softBlur)" opacity="0.9" mix-blend-mode="screen" />
+    <ellipse cx="200" cy="332" rx="12" ry="4" fill="#FFD000" filter="url(#softBlur)" opacity="0.8" mix-blend-mode="screen" />
+
+    <!-- Floating Embers (Particles) -->
+    <g id="embers">
+      <circle class="ember e1" cx="190" cy="320" r="2.5" fill="#FF6B00" style="--tx: -25px; --ty: -90px;" />
+      <circle class="ember e2" cx="215" cy="325" r="3" fill="#FFD000" style="--tx: 30px; --ty: -110px;" />
+      <circle class="ember e3" cx="200" cy="315" r="2" fill="#FF2D2D" style="--tx: 5px; --ty: -130px;" />
+      <circle class="ember e4" cx="175" cy="310" r="1.5" fill="#FF6B00" style="--tx: -40px; --ty: -80px;" />
+      <circle class="ember e5" cx="225" cy="315" r="2.5" fill="#FF5500" style="--tx: 45px; --ty: -95px;" />
+      <circle class="ember e6" cx="205" cy="300" r="1.5" fill="#FFD000" style="--tx: -15px; --ty: -120px;" />
+    </g>
+  </g>
+
+  <!-- Foreground Vignette Overlay -->
+  <rect width="100%" height="100%" fill="url(#vignette)" pointer-events="none" />
+</svg>
