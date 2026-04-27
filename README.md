@@ -32,7 +32,7 @@ MidnightEmber is a premium fine-dining landing page showcasing flame-crafted con
 
 1. Clone the repository:
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/Subham234s/Midnightember-Restaurant_2.git
    ```
 
 2. Install dependencies:
